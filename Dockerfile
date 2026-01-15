@@ -17,6 +17,7 @@ RUN apt install -y \
         ca-certificates \
         gnupg \
         lsb-release \
+        jq \
         nano && \
     # CLEAN UP #################################################################
     apt-get clean -y && \
