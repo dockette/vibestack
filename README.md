@@ -18,14 +18,19 @@
 
 ## Prologue
 
-Docker image with Claude CLI, Node.js 22, GitHub CLI, and essential development tools.
+Docker image with multiple AI coding CLI tools, Node.js 24, GitHub CLI, and essential development tools.
 
 **Features**
 
 - Debian Bookworm (slim)
-- Node.js 22 (via NVM)
-- Claude CLI (claude)
-- GitHub CLI (gh)
+- Node.js 24 (official installation)
+- Claude Code CLI (`claude`) - AI coding agent from Anthropic
+- Cursor CLI (`cursor-agent`) - AI coding agent from Cursor
+- Codex CLI (`codex`) - AI coding agent from OpenAI
+- Gemini CLI (`gemini`) - AI coding agent from Google
+- OpenCode CLI (`opencode`) - Open source AI coding agent
+- Copilot CLI (`copilot`) - AI coding agent from GitHub
+- GitHub CLI (`gh`)
 - Essential development tools (git, curl, wget, nano)
 
 ## Usage

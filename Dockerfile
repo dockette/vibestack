@@ -2,7 +2,7 @@ FROM debian:bookworm-slim
 
 ARG TARGETARCH
 
-ENV PATH=~/bin:~/.local/bin:$PATH
+ENV PATH=/root/bin:/root/.local/bin:$PATH
 ENV GH_VERSION=2.83.1
 
 # INSTALLATION #################################################################
@@ -24,27 +24,31 @@ RUN apt install -y \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*
 
-# NVM ##########################################################################
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash && \
-    export NVM_DIR="$HOME/.nvm" && \
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-    nvm install 22 && \
-    nvm use 22 && \
-    nvm alias default 22 && \
-    echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc && \
-    echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc && \
-    echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> ~/.bashrc
+# NODE.JS 24 ###################################################################
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
+    apt-get install -y nodejs
 
-ENV NVM_DIR=/root/.nvm
-RUN export NVM_DIR=/root/.nvm && \
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-    NODE_PATH=$(find $NVM_DIR/versions/node -maxdepth 1 -type d -name "v22*" | head -1) && \
-    ln -sf $NODE_PATH/bin/node /usr/local/bin/node && \
-    ln -sf $NODE_PATH/bin/npm /usr/local/bin/npm && \
-    ln -sf $NODE_PATH/bin/npx /usr/local/bin/npx
+ENV PATH=/root/bin:/root/.local/bin:$PATH
 
-# CLAUDE #######################################################################
-RUN curl -fsSL https://claude.ai/install.sh | bash
+# CLAUDE CODE ##################################################################
+RUN npm install -g @anthropic-ai/claude-code
+
+# CURSOR CLI ###################################################################
+RUN curl https://cursor.com/install -fsS | bash
+
+# CODEX CLI ####################################################################
+RUN npm install -g @openai/codex
+
+# GEMINI CLI ###################################################################
+RUN npm install -g @google/gemini-cli
+
+# OPENCODE CLI #################################################################
+RUN curl -fsSL https://opencode.ai/install | bash
+
+ENV PATH=/root/.opencode/bin:$PATH
+
+# COPILOT CLI ##################################################################
+RUN npm install -g @github/copilot
 
 # GITHUB CLI ###################################################################
 RUN ARCH=$(case ${TARGETARCH} in \
