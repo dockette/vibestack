@@ -4,6 +4,7 @@ ARG TARGETARCH
 
 ENV PATH=/root/bin:/root/.local/bin:$PATH
 ENV GH_VERSION=2.83.1
+ENV GLAB_VERSION=1.81.0
 
 # INSTALLATION #################################################################
 RUN apt update && \
@@ -62,6 +63,18 @@ RUN ARCH=$(case ${TARGETARCH} in \
     tar -xvf gh_${GH_VERSION}_${ARCH}.tar.gz && \
     rm gh_${GH_VERSION}_${ARCH}.tar.gz && \
     mv gh_${GH_VERSION}_${ARCH}/bin/gh /usr/local/bin
+
+# GITLAB CLI ###################################################################
+RUN ARCH=$(case ${TARGETARCH} in \
+        amd64) echo "linux_amd64" ;; \
+        arm64) echo "linux_arm64" ;; \
+        arm) echo "linux_armv6" ;; \
+        *) echo "linux_amd64" ;; \
+    esac) && \
+    curl -OL https://gitlab.com/gitlab-org/cli/-/releases/v${GLAB_VERSION}/downloads/glab_${GLAB_VERSION}_${ARCH}.tar.gz && \
+    tar -xvf glab_${GLAB_VERSION}_${ARCH}.tar.gz && \
+    rm glab_${GLAB_VERSION}_${ARCH}.tar.gz && \
+    mv bin/glab /usr/local/bin
 
 # WORKDIR ######################################################################
 WORKDIR /workspace
