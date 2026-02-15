@@ -53,3 +53,7 @@ Default working directory is `/workspace`.
 ## User
 
 Default user is `vibestack` with UID `1000` and GID `1000` and `sudo` no password.
+
+## Maintenance
+
+See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package.
