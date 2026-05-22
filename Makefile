@@ -13,3 +13,6 @@ test:
 	docker run --rm ${DOCKER_IMAGE}:latest gemini --version
 	docker run --rm ${DOCKER_IMAGE}:latest opencode --version
 	docker run --rm ${DOCKER_IMAGE}:latest copilot --version
+
+run:
+	docker run --rm -it -v ${PWD}:/workspace -w /workspace ${DOCKER_IMAGE}:latest /bin/bash
