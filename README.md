@@ -11,9 +11,8 @@
 <p align=center>
   <a href="https://github.com/dockette/vibestack/actions"><img src="https://github.com/dockette/vibestack/actions/workflows/docker.yml/badge.svg"></a>
   <a href="https://hub.docker.com/r/dockette/vibestack/"><img src="https://badgen.net/docker/pulls/dockette/vibestack"></a>
-  <a href="https://join.slack.com/t/pehapkari/shared_invite/zt-m3c6y1ya-XvJ4dXppLmAsT_YH5hZSwQ"><img src="https://badgen.net/badge/icon/slack?icon=slack&label"></a>
-  <a href="https://github.com/orgs/dockette/discussions"><img src="https://badgen.net/badge/help/discussions/blue"></a>
   <a href="https://github.com/sponsors/f3l1x"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
+  <a href="https://github.com/orgs/dockette/discussions"><img src="https://badgen.net/badge/support/discussions/blue"></a>
 </p>
 
 ------
