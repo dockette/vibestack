@@ -3,8 +3,8 @@ FROM debian:bookworm-slim
 ARG TARGETARCH
 
 ENV PATH=/root/bin:/root/.local/bin:$PATH
-ENV GH_VERSION=2.83.1
-ENV GLAB_VERSION=1.81.0
+ENV GH_VERSION=2.97.0
+ENV GLAB_VERSION=1.112.0
 
 # INSTALLATION #################################################################
 RUN apt update && \
