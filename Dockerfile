@@ -1,8 +1,16 @@
-FROM debian:bookworm-slim
+FROM debian:bookworm-20260803-slim@sha256:abd67ffcfa541b485a3dff59865ab629aa048a6c613e639d36e7456b0b229241
 
 ARG TARGETARCH
 
 ENV PATH=/root/bin:/root/.local/bin:$PATH
+
+# VERSIONS #####################################################################
+ENV NODE_VERSION=24.19.0
+ENV CLAUDE_CODE_VERSION=2.1.227
+ENV CODEX_VERSION=0.147.0
+ENV GEMINI_VERSION=0.54.4
+ENV OPENCODE_VERSION=1.18.16
+ENV COPILOT_VERSION=1.0.79
 ENV GH_VERSION=2.97.0
 ENV GLAB_VERSION=1.112.0
 
@@ -26,31 +34,29 @@ RUN apt install -y \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/* /var/lib/log/* /tmp/* /var/tmp/*
 
-# NODE.JS 24 ###################################################################
-RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash - && \
-    apt-get install -y nodejs
+# NODE.JS ######################################################################
+RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION%%.*}.x | bash - && \
+    apt-get install -y nodejs=${NODE_VERSION}-1nodesource1
 
 ENV PATH=/root/bin:/root/.local/bin:$PATH
 
 # CLAUDE CODE ##################################################################
-RUN npm install -g @anthropic-ai/claude-code
+RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
 
 # CURSOR CLI ###################################################################
 RUN curl https://cursor.com/install -fsS | bash
 
 # CODEX CLI ####################################################################
-RUN npm install -g @openai/codex
+RUN npm install -g @openai/codex@${CODEX_VERSION}
 
 # GEMINI CLI ###################################################################
-RUN npm install -g @google/gemini-cli
+RUN npm install -g @google/gemini-cli@${GEMINI_VERSION}
 
 # OPENCODE CLI #################################################################
-RUN curl -fsSL https://opencode.ai/install | bash
-
-ENV PATH=/root/.opencode/bin:$PATH
+RUN npm install -g opencode-ai@${OPENCODE_VERSION}
 
 # COPILOT CLI ##################################################################
-RUN npm install -g @github/copilot
+RUN npm install -g @github/copilot@${COPILOT_VERSION}
 
 # GITHUB CLI ###################################################################
 RUN ARCH=$(case ${TARGETARCH} in \
