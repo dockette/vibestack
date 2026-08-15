@@ -26,8 +26,18 @@ RUN apt install -y \
         ca-certificates \
         gnupg \
         lsb-release \
+        openssh-client \
         jq \
+        ripgrep \
+        fd-find \
+        tree \
+        less \
+        procps \
+        unzip \
+        zip \
         nano && \
+    # Debian ships fd as fdfind to avoid a name clash
+    ln -s "$(command -v fdfind)" /usr/local/bin/fd && \
     # CLEAN UP #################################################################
     apt-get clean -y && \
     apt-get autoclean -y && \

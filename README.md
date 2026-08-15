@@ -32,7 +32,8 @@ Docker image with multiple AI coding CLI tools, Node.js 24, GitHub CLI, and esse
 - OpenCode CLI (`opencode`) - Open source AI coding agent
 - Copilot CLI (`copilot`) - AI coding agent from GitHub
 - GitHub CLI (`gh`)
-- Essential development tools (git, curl, wget, nano)
+- Essential development tools (git, ssh, curl, wget, nano)
+- Search & data tools (`rg` ripgrep, `fd` fd-find, `jq`, `tree`, `less`, `ps`, `unzip`, `zip`)
 
 ## Usage
 
