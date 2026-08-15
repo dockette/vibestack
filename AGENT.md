@@ -20,8 +20,8 @@ usually mounted there.
 | Command        | Tool                    | Notes                                       |
 | -------------- | ----------------------- | ------------------------------------------- |
 | `node`, `npm`  | Node.js 24 (NodeSource) | Default runtime for the installed CLI tools |
-| `bun`, `bunx`  | Bun 1                   | JS/TS runtime, bundler and package manager  |
-| `deno`         | Deno 2                  | JS/TS runtime with built-in TypeScript      |
+| `bun`, `bunx`  | Bun 1.x                 | JS/TS runtime, bundler and package manager  |
+| `deno`         | Deno 2.x                | JS/TS runtime with built-in TypeScript      |
 
 ## Version control & forges
 
