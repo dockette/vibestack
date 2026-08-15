@@ -17,12 +17,21 @@ run:
 	docker run --rm -it --platform ${DOCKER_PLATFORMS} -v ${PWD}:/workspace -w /workspace ${DOCKER_IMAGE}:${DOCKER_TAG} /bin/bash
 
 .PHONY: test
-test: _testcase-node _testcase-agents _testcase-common
+test: _testcase-node _testcase-bun _testcase-deno _testcase-agents _testcase-common
 
 .PHONY: _testcase-node
 _testcase-node:
 	$(TEST_RUN) node --version
 	$(TEST_RUN) npm --version
+
+.PHONY: _testcase-bun
+_testcase-bun:
+	$(TEST_RUN) bun --version
+	$(TEST_RUN) bunx --version
+
+.PHONY: _testcase-deno
+_testcase-deno:
+	$(TEST_RUN) deno --version
 
 .PHONY: _testcase-agents
 _testcase-agents:
