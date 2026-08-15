@@ -48,3 +48,4 @@ _testcase-common:
 	$(TEST_RUN) unzip -v
 	$(TEST_RUN) zip -v
 	$(TEST_RUN) nano --version
+	$(TEST_RUN) test -s /root/AGENT.md
