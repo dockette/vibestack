@@ -38,5 +38,13 @@ _testcase-common:
 	$(TEST_RUN) gh --version
 	$(TEST_RUN) glab --version
 	$(TEST_RUN) git --version
+	$(TEST_RUN) ssh -V
 	$(TEST_RUN) jq --version
+	$(TEST_RUN) rg --version
+	$(TEST_RUN) fd --version
+	$(TEST_RUN) tree --version
+	$(TEST_RUN) less --version
+	$(TEST_RUN) ps --version
+	$(TEST_RUN) unzip -v
+	$(TEST_RUN) zip -v
 	$(TEST_RUN) nano --version
