@@ -6,6 +6,8 @@ ENV PATH=/root/bin:/root/.local/bin:$PATH
 
 # VERSIONS #####################################################################
 ENV NODE_VERSION=24.19.0
+ENV BUN_VERSION=1.3.14
+ENV DENO_VERSION=2.9.5
 ENV CLAUDE_CODE_VERSION=2.1.227
 ENV CODEX_VERSION=0.147.0
 ENV GEMINI_VERSION=0.54.4
@@ -49,6 +51,30 @@ RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION%%.*}.x | bash - &
     apt-get install -y nodejs=${NODE_VERSION}-1nodesource1
 
 ENV PATH=/root/bin:/root/.local/bin:$PATH
+
+# BUN ##########################################################################
+RUN ARCH=$(case ${TARGETARCH} in \
+        amd64) echo "linux-x64" ;; \
+        arm64) echo "linux-aarch64" ;; \
+        *) echo "linux-x64" ;; \
+    esac) && \
+    curl -OL https://github.com/oven-sh/bun/releases/download/bun-v${BUN_VERSION}/bun-${ARCH}.zip && \
+    unzip -q bun-${ARCH}.zip && \
+    rm bun-${ARCH}.zip && \
+    mv bun-${ARCH}/bun /usr/local/bin && \
+    rmdir bun-${ARCH} && \
+    ln -s /usr/local/bin/bun /usr/local/bin/bunx
+
+# DENO #########################################################################
+RUN ARCH=$(case ${TARGETARCH} in \
+        amd64) echo "x86_64-unknown-linux-gnu" ;; \
+        arm64) echo "aarch64-unknown-linux-gnu" ;; \
+        *) echo "x86_64-unknown-linux-gnu" ;; \
+    esac) && \
+    curl -OL https://github.com/denoland/deno/releases/download/v${DENO_VERSION}/deno-${ARCH}.zip && \
+    unzip -q deno-${ARCH}.zip && \
+    rm deno-${ARCH}.zip && \
+    mv deno /usr/local/bin
 
 # CLAUDE CODE ##################################################################
 RUN npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}

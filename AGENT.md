@@ -15,11 +15,13 @@ usually mounted there.
 | `opencode`     | OpenCode CLI                    |
 | `copilot`      | Copilot CLI (GitHub)            |
 
-## Runtime
+## Runtimes
 
-| Command       | Tool                    |
-| ------------- | ----------------------- |
-| `node`, `npm` | Node.js 24 (NodeSource) |
+| Command        | Tool                    | Notes                                       |
+| -------------- | ----------------------- | ------------------------------------------- |
+| `node`, `npm`  | Node.js 24 (NodeSource) | Default runtime for the installed CLI tools |
+| `bun`, `bunx`  | Bun 1                   | JS/TS runtime, bundler and package manager  |
+| `deno`         | Deno 2                  | JS/TS runtime with built-in TypeScript      |
 
 ## Version control & forges
 
@@ -50,6 +52,8 @@ usually mounted there.
   and skip ignored files by default.
 - Pipe API and CLI output through `jq` instead of parsing JSON by hand;
   `gh` and `glab` both support `--json` output.
+- Node.js, Bun and Deno are all available — use whichever a project expects
+  (`package.json` scripts, `bun.lock`, `deno.json`) instead of assuming `npm`.
 - `PATH` includes `/root/bin` and `/root/.local/bin`, so tools you install
   yourself into those directories are picked up without extra setup.
 - Run `<command> --version` to check the exact version of any tool; the

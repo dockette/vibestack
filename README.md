@@ -1,7 +1,7 @@
 <h1 align=center>Dockette / Vibestack</h1>
 
 <p align=center>
-   🎁 Dockerized stack for vibint. Claude, Node.js, GitHub CLI, and development tools.
+   🎁 Dockerized stack for vibint. Claude, Node.js, Bun, Deno, GitHub CLI, and development tools.
 </p>
 
 <p align=center>
@@ -19,12 +19,14 @@
 
 ## Prologue
 
-Docker image with multiple AI coding CLI tools, Node.js 24, GitHub CLI, and essential development tools.
+Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub CLI, and essential development tools.
 
 **Features**
 
 - Debian Bookworm (slim)
 - Node.js 24 (official installation)
+- Bun 1 (`bun`, `bunx`) - fast JS/TS runtime and package manager
+- Deno 2 (`deno`) - JS/TS runtime with built-in TypeScript
 - Claude Code CLI (`claude`) - AI coding agent from Anthropic
 - Cursor CLI (`cursor-agent`) - AI coding agent from Cursor
 - Codex CLI (`codex`) - AI coding agent from OpenAI
