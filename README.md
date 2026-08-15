@@ -52,6 +52,11 @@ docker run \
 
 Default working directory is `/workspace`.
 
+## Agent docs
+
+`/root/AGENT.md` documents the installed tools and is meant to be read by the
+AI agents running inside the container.
+
 ## User
 
 Default user is `vibestack` with UID `1000` and GID `1000` and `sudo` no password.

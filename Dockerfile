@@ -92,6 +92,9 @@ RUN ARCH=$(case ${TARGETARCH} in \
     rm glab_${GLAB_VERSION}_${ARCH}.tar.gz && \
     mv bin/glab /usr/local/bin
 
+# AGENT DOCS ###################################################################
+COPY AGENT.md /root/AGENT.md
+
 # WORKDIR ######################################################################
 WORKDIR /workspace
 
