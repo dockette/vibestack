@@ -25,8 +25,8 @@ Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub CL
 
 - Debian Bookworm (slim)
 - Node.js 24 (official installation)
-- Bun 1 (`bun`, `bunx`) - fast JS/TS runtime and package manager
-- Deno 2 (`deno`) - JS/TS runtime with built-in TypeScript
+- Bun 1.x (`bun`, `bunx`) - fast JS/TS runtime and package manager
+- Deno 2.x (`deno`) - JS/TS runtime with built-in TypeScript
 - Claude Code CLI (`claude`) - AI coding agent from Anthropic
 - Cursor CLI (`cursor-agent`) - AI coding agent from Cursor
 - Codex CLI (`codex`) - AI coding agent from OpenAI
