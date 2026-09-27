@@ -1,6 +1,6 @@
 # Vibestack
 
-Container image for AI coding agents, based on Debian Bookworm (slim).
+Container image for AI coding agents, based on Debian Trixie (slim).
 Default working directory is `/workspace`; the repository you work on is
 usually mounted there.
 
