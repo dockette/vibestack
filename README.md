@@ -23,7 +23,7 @@ Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub CL
 
 **Features**
 
-- Debian Bookworm (slim)
+- Debian Trixie (slim)
 - Node.js 24 (official installation)
 - Bun 1.x (`bun`, `bunx`) - fast JS/TS runtime and package manager
 - Deno 2.x (`deno`) - JS/TS runtime with built-in TypeScript
