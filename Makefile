@@ -1,6 +1,7 @@
 DOCKER_IMAGE=dockette/vibestack
 DOCKER_TAG?=latest
 DOCKER_PLATFORMS?=linux/amd64
+VERSION:=$(shell cat VERSION)
 
 TEST_RUN=docker run --rm --platform ${DOCKER_PLATFORMS} ${DOCKER_IMAGE}:${DOCKER_TAG}
 
@@ -58,3 +59,13 @@ _testcase-common:
 	$(TEST_RUN) zip -v
 	$(TEST_RUN) nano --version
 	$(TEST_RUN) test -s /root/AGENT.md
+
+.PHONY: version
+version:
+	@echo ${VERSION}
+
+.PHONY: release
+release:
+	@date -u +%Y.%m.%d > VERSION
+	@echo "VERSION: ${VERSION} -> $$(cat VERSION)"
+	@echo "next: git commit -am \"Release: $$(cat VERSION)\" && git push"

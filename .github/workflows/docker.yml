@@ -26,18 +26,51 @@ jobs:
       - name: Smoke test image
         run: make test
 
+  version:
+    name: "Version"
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Read VERSION
+        id: version
+        run: echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
+
   publish:
     name: "Publish"
-    needs: build
+    needs: [build, version]
+    strategy:
+      fail-fast: false
+      matrix:
+        tag: ["latest", "${{ needs.version.outputs.version }}"]
     if: ${{ github.ref == 'refs/heads/master' }}
     uses: dockette/.github/.github/workflows/docker.yml@master
     secrets: inherit
     with:
       image: "dockette/vibestack"
-      tag: "latest"
+      tag: ${{ matrix.tag }}
       context: "."
       platforms: "linux/amd64,linux/arm64"
       push: true
+
+  release:
+    name: "Release"
+    needs: publish
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release view "$(cat VERSION)" || gh release create "$(cat VERSION)" --generate-notes
 
   docs:
     name: "Docs"

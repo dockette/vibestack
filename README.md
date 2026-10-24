@@ -63,6 +63,11 @@ AI agents running inside the container.
 
 Default user is `vibestack` with UID `1000` and GID `1000` and `sudo` no password.
 
+## Versions
+
+The release version is the date in [`VERSION`](VERSION). CI pushes `latest` also as `dockette/vibestack:<VERSION>`.
+To release, run `make release`, commit and push to `master`.
+
 ## Maintenance
 
 See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to [support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
