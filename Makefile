@@ -1,6 +1,7 @@
 DOCKER_IMAGE=dockette/vibestack
 DOCKER_TAG?=latest
 DOCKER_PLATFORMS?=linux/amd64
+include VERSION
 
 TEST_RUN=docker run --rm --platform ${DOCKER_PLATFORMS} ${DOCKER_IMAGE}:${DOCKER_TAG}
 
@@ -58,3 +59,12 @@ _testcase-common:
 	$(TEST_RUN) zip -v
 	$(TEST_RUN) nano --version
 	$(TEST_RUN) test -s /root/AGENT.md
+
+.PHONY: version
+version:
+	@echo ${VERSION}
+
+.PHONY: release
+release:
+	@sed -i.bak "s/^VERSION=.*/VERSION=$$(date -u +%Y.%m.%d)/" VERSION && rm VERSION.bak
+	@cat VERSION
