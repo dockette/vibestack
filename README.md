@@ -15,54 +15,62 @@
   <a href="https://github.com/orgs/dockette/discussions"><img src="https://img.shields.io/badge/support-discussions-6f42c1" alt="Support/Discussions"></a>
 </p>
 
-------
+-----
 
-## Prologue
+Docker image with AI coding CLI tools, Node.js 24, Bun, Deno, GitHub CLI and essential development tools, for agents
+that work in a container.
 
-Docker image with multiple AI coding CLI tools, Node.js 24, Bun, Deno, GitHub CLI, and essential development tools.
-
-**Features**
+## Features
 
 - Debian Trixie (slim)
 - Node.js 24 (official installation)
-- Bun 1.x (`bun`, `bunx`) - fast JS/TS runtime and package manager
-- Deno 2.x (`deno`) - JS/TS runtime with built-in TypeScript
-- Claude Code CLI (`claude`) - AI coding agent from Anthropic
-- Cursor CLI (`cursor-agent`) - AI coding agent from Cursor
-- Codex CLI (`codex`) - AI coding agent from OpenAI
-- Gemini CLI (`gemini`) - AI coding agent from Google
-- OpenCode CLI (`opencode`) - Open source AI coding agent
-- Copilot CLI (`copilot`) - AI coding agent from GitHub
+- Bun 1.x (`bun`, `bunx`): fast JS/TS runtime and package manager
+- Deno 2.x (`deno`): JS/TS runtime with built-in TypeScript
+- Claude Code CLI (`claude`): AI coding agent from Anthropic
+- Cursor CLI (`cursor-agent`): AI coding agent from Cursor
+- Codex CLI (`codex`): AI coding agent from OpenAI
+- Gemini CLI (`gemini`): AI coding agent from Google
+- OpenCode CLI (`opencode`): open source AI coding agent
+- Copilot CLI (`copilot`): AI coding agent from GitHub
 - GitHub CLI (`gh`)
 - Essential development tools (git, ssh, curl, wget, nano)
-- Search & data tools (`rg` ripgrep, `fd` fd-find, `jq`, `tree`, `less`, `ps`, `unzip`, `zip`)
+- Search and data tools (`rg` ripgrep, `fd` fd-find, `jq`, `tree`, `less`, `ps`, `unzip`, `zip`)
+- `/root/AGENT.md` documents the installed tools and is meant to be read by the AI agents inside the container
 
 ## Usage
 
 ```sh
-docker run \
-    --rm \
-    -it \
-    dockette/vibestack:latest
+docker run --rm -it dockette/vibestack:latest
 ```
 
-## ENV(s)
+## Configuration
 
-- `PATH` - Includes `~/bin` and `~/.local/bin` for user-installed tools
+- Working directory is `/workspace`.
+- User is `vibestack` with UID `1000` and GID `1000`, and `sudo` without a password.
+- `PATH` includes `~/bin` and `~/.local/bin` for user-installed tools.
 
-## Workdir
+## Versions
 
-Default working directory is `/workspace`.
+| Version | Release |
+|---------|---------|
+| `dockette/vibestack:YYYY.MM.DD` | release `YYYY.MM.DD` |
+| `dockette/vibestack:latest` | latest build of `master` |
 
-## Agent docs
+All versions build on `debian:trixie-slim`. Tool versions are pinned in the `Dockerfile`. Releases are listed on
+[GitHub](https://github.com/dockette/vibestack/releases).
 
-`/root/AGENT.md` documents the installed tools and is meant to be read by the
-AI agents running inside the container.
+## Development
 
-## User
-
-Default user is `vibestack` with UID `1000` and GID `1000` and `sudo` no password.
+```sh
+make build          # build the image
+make test           # check the version of every tool
+make push           # push the image
+make run            # open a shell in the image, with the current directory in /workspace
+make version        # print VERSION
+make release        # set today's date in VERSION
+```
 
 ## Maintenance
 
-See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to [support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
+See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to
+[support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
